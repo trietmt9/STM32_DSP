@@ -12,7 +12,7 @@
 
 /* MACROS for initialize the IMU */
 #define WHO_AM_I                                        0X68
-#define SMPLRT_DIV                                      0X2
+#define SMPLRT_DIV                                      0X19
 #define PWR_MGMT_1                                      0X6B
 #define PWR_MGMT_2                                      0X6C
 #define GYRO_CONFIG                                     0X1B
