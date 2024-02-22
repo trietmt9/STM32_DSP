@@ -8,6 +8,12 @@
 #ifndef INC_MPU9250_H_
 #define INC_MPU9250_H_
 #include <stdint.h>
+#include <stm32f446xx.h>
+#include <math.h>
+#include <main.h>
+
+extern SPI_HandleTypeDef hspi1;
+
 /** MPU9250 REGISTERS USED IN THIS PROJECT MACROS **/
 
 /* MACROS for initialize the IMU */
@@ -48,6 +54,28 @@ typedef struct
     float Az;
     float Roll;
     float Pitch;
-}imu;
+}imu_t;
+
+/* List of mode for configure the sensor */
+typedef enum
+{
+    ACCEL_FS_2G     = 0,
+    ACCEL_FS_4G     = 1,
+    ACCEL_FS_8G     = 2,
+    ACCEL_FS_16G    = 3
+}AccelRange_t;
+
+typedef enum
+{
+    GYRO_FS_250_DPS     = 0,
+    GYRO_FS_500_DPS     = 1,
+    GYRO_FS_1000_DPS    = 2,
+    GYRO_FS_2000_DPS    = 3
+}GyroRange_t;
+
+void IMU_Init();
+void IMU_Read(imu_t* data); 
+void WriteRegister(uint8_t address, uint8_t data);
+void ReadRegister(uint8_t address, uint8_t size, uint8_t buffer);
 
 #endif /* INC_MPU9250_H_ */

@@ -1,0 +1,7 @@
+{
+    "cortex-debug.armToolchainPath": "c:\\Users\\pc\\AppData\\Roaming\\Code\\User\\globalStorage\\bmd.stm32-for-vscode\\@xpack-dev-tools\\arm-none-eabi-gcc\\12.2.1-1.2.1\\.content\\bin",
+    "files.associations": {
+        "stm32f446xx.h": "c",
+        "mpu9250.h": "c"
+    }
+}
