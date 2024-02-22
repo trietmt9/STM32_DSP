@@ -29,6 +29,9 @@ extern SPI_HandleTypeDef hspi1;
 #define GYRO_OUT                                        0X43
 #define ACCEL_OUT                                       0X3B
 
+/* MACROS */
+
+#define SPI_TIMEOUT                                     500          
 
 /** STRUCT FOR READING IMU DATA **/
 typedef struct 
