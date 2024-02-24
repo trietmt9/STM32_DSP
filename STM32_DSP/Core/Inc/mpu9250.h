@@ -2,7 +2,7 @@
  * mpu9250.h
  *
  *  Created on: Feb 4, 2024
- *      Author: pc
+ *      Author: Triet
  */
 
 #ifndef INC_MPU9250_H_
@@ -15,6 +15,11 @@
 extern SPI_HandleTypeDef hspi1;
 
 /** MPU9250 REGISTERS USED IN THIS PROJECT MACROS **/
+/** Register memory size Variable**/
+const uint8_t  _8_BIT_Register   =  0x8u;
+const uint16_t _16_BIT_Register  =  0x10u;
+const uint32_t _32_BIT_Register  =  0x20u;
+const uint64_t _64_BIT_Register  =  0x40u;
 
 /* MACROS for initialize the IMU */
 #define WHO_AM_I                                        0x68u
@@ -63,23 +68,34 @@ typedef struct
 /* List of mode for configure the sensor */
 typedef enum
 {
-    ACCEL_FS_2G     = 0,
-    ACCEL_FS_4G     = 1,
-    ACCEL_FS_8G     = 2,
-    ACCEL_FS_16G    = 3
+    ACCEL_FS_2G,
+    ACCEL_FS_4G,
+    ACCEL_FS_8G,
+    ACCEL_FS_16G
 }AccelRange_t;
 
 typedef enum
 {
-    GYRO_FS_250_DPS     = 0,
-    GYRO_FS_500_DPS     = 1,
-    GYRO_FS_1000_DPS    = 2,
-    GYRO_FS_2000_DPS    = 3
+    GYRO_FS_250_DPS,
+    GYRO_FS_500_DPS,
+    GYRO_FS_1000_DPS,
+    GYRO_FS_2000_DPS
 }GyroRange_t;
+
+typedef enum
+{
+    DLPF_CFG_250Hz,
+    DLPF_CFG_184Hz,
+    DLPF_CFG_92Hz,
+    DLPF_CFG_41Hz,
+    DLPF_CFG_20Hz,
+    DLPF_CFG_10Hz,
+    DLPF_CFG_5Hz,
+}DLPFcfg_t;
 
 void IMU_Init();
 void IMU_Read_Raw(imu_t* data); 
-void WriteRegister(uint8_t address, uint8_t data);
-void ReadRegister(uint8_t address, uint8_t size, uint8_t buffer);
+void WriteRegister(uint8_t Register, uint8_t* pBuffer);
+void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint16_t size);
 
 #endif /* INC_MPU9250_H_ */
