@@ -17,17 +17,18 @@ extern SPI_HandleTypeDef hspi1;
 /** MPU9250 REGISTERS USED IN THIS PROJECT MACROS **/
 
 /* MACROS for initialize the IMU */
-#define WHO_AM_I                                        0X68
-#define SMPLRT_DIV                                      0X19
-#define PWR_MGMT_1                                      0X6B
-#define PWR_MGMT_2                                      0X6C
-#define GYRO_CONFIG                                     0X1B
-#define ACCEL_CONFIG                                    0X1C
-#define ACCEL_CONFIG2                                   0X1D
+#define WHO_AM_I                                        0x68u
+#define SMPLRT_DIV                                      0x19u
+#define PWR_MGMT_1                                      0x6Bu
+#define PWR_MGMT_2                                      0x6Cu
+#define GYRO_CONFIG                                     0x1Bu
+#define ACCEL_CONFIG_1                                  0x1Cu
+#define ACCEL_CONFIG_2                                  0x1Du
+#define MPU9250_IS_ON                                   0x71u
 
 /* MACROS for reading the IMU*/
-#define GYRO_OUT                                        0X43
-#define ACCEL_OUT                                       0X3B
+#define GYRO_OUT                                        0x43u
+#define ACCEL_OUT                                       0x3Bu
 
 /* MACROS */
 
@@ -77,7 +78,7 @@ typedef enum
 }GyroRange_t;
 
 void IMU_Init();
-void IMU_Read(imu_t* data); 
+void IMU_Read_Raw(imu_t* data); 
 void WriteRegister(uint8_t address, uint8_t data);
 void ReadRegister(uint8_t address, uint8_t size, uint8_t buffer);
 
