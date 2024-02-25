@@ -42,27 +42,39 @@ const uint64_t _64_BIT_Register  =  0x40u;
 /** STRUCT FOR READING IMU DATA **/
 typedef struct 
 {
-/* RAW data read from sensor */
-    int16_t Gx_RAW;
-    int16_t Gy_RAW;
-    int16_t Gz_RAW; 
-    int16_t Ax_RAW;
-    int16_t Ay_RAW;
-    int16_t Az_RAW;
+    struct 
+    {
+        /* RAW data read from sensor */
+        int16_t Gx_RAW;
+        int16_t Gy_RAW;
+        int16_t Gz_RAW; 
+        int16_t Ax_RAW;
+        int16_t Ay_RAW;
+        int16_t Az_RAW;
+    }RawData_t;
+    
 
-/* Variables for calculations */
-
-    float Gx;
-    float Gy;
-    float Gz;
-    float Gx_Callib;
-    float Gy_Callib;
-    float Gz_Callib;
-    float Ax;
-    float Ay;
-    float Az;
-    float Roll;
-    float Pitch;
+    struct 
+    {
+        /* Variables for calculations */
+        float Gx;
+        float Gy;
+        float Gz;
+        float Gx_Callib;
+        float Gy_Callib;
+        float Gz_Callib;
+        float Ax;
+        float Ay;
+        float Az;
+        float Roll;
+        float Pitch;
+    }Data_t;
+    
+    struct
+    {
+    float GyroScaleFactor;
+    float AccelerometerScaleFactor; 
+    }ScaleData_t; 
 }imu_t;
 
 /* List of mode for configure the sensor */

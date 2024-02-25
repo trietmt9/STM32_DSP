@@ -70,7 +70,63 @@ static void WriteRegister(uint8_t Register, uint8_t* pBuffer)
     SPI_Deactivate();
 }
 
+/**
+ * @brief Sets the Gyroscope full-scale range.
+ *
+ * @param pScale The imu_t data structure that contains the scale factors.
+ * @param Select The Gyroscope full-scale range to set.
+ */
+static void Gyro_AFS_Select(imu_t* pScale, uint8_t Select)
+{
+    uint8_t GyScale;
+    switch(Select)
+    {
+        case GYRO_FS_250_DPS:
+            pScale->ScaleData_t.GyroScaleFactor =  131.0;
+            break;
+        case GYRO_FS_500_DPS:
+            pScale->ScaleData_t.GyroScaleFactor = 65.5;
+            break;
+        case GYRO_FS_1000_DPS:
+            pScale->ScaleData_t.GyroScaleFactor = 32.8; 
+            break; 
+        case GYRO_FS_2000_DPS:
+            pScale->ScaleData_t.GyroScaleFactor = 16.4;
+            break;
+        default:
+            pScale->ScaleData_t.GyroScaleFactor = 131.0;
+            break;
+    }
+}
 
+/**
+ * @brief Sets the accelerometer full-scale range.
+ *
+ * @param pScale The imu_t data structure that contains the scale factors.
+ * @param Select The accelerometer full-scale range to set.
+ */
+static void Accel_AFS_Select(imu_t* pScale, uint8_t Select)
+{
+    uint8_t AccScale;
+    switch(Select)
+    {
+        case ACCEL_FS_2G:
+            pScale->ScaleData_t.AccelerometerScaleFactor =  16384.0;
+            break;
+        case ACCEL_FS_4G:
+            pScale->ScaleData_t.AccelerometerScaleFactor = 8192.0;
+            break;
+        case ACCEL_FS_8G:
+            pScale->ScaleData_t.AccelerometerScaleFactor = 4096.0; 
+            break; 
+        case ACCEL_FS_16G:
+            pScale->ScaleData_t.AccelerometerScaleFactor = 2048.0;
+            break;
+        default:
+            pScale->ScaleData_t.GyroScaleFactor = 16384.0;
+            break;
+    }
+}
 /**
  * @brief Reads the WHO_AM_I register to check if the MPU-9250 is present.
  *
@@ -87,9 +143,9 @@ uint8_t IS_MPU9250_ON() {
  * 
  * @return 0 if initialization was successful, 1 otherwise.
  */
-void IMU_Init(void)
+void IMU_Init(imu_t* Data)
 {
-    uint8_t data;
+    uint8_t data, range_data;
     if (IS_MPU9250_ON() == MPU9250_IS_ON)
     {
         // set power management register to normal mode
@@ -98,10 +154,14 @@ void IMU_Init(void)
         WriteRegister(PWR_MGMT_2, &data);
 
         // set accelerometer range to +/- 16g
+        range_data = ACCEL_FS_16G; 
+        Accel_AFS_Select(Data, range_data);
         data = (ACCEL_FS_16G * _8_BIT_Register); 
         WriteRegister(ACCEL_CONFIG_1, &data);
 
         // set gyroscope range to +/- 250 degrees/s
+        range_data = GYRO_FS_250_DPS; 
+        Gyro_AFS_Select(Data, range_data);
         data = (GYRO_FS_250_DPS * _8_BIT_Register); 
         WriteRegister(GYRO_CONFIG, &data);
 
@@ -128,14 +188,21 @@ void IMU_Read_Raw(imu_t* data)
 {
     uint8_t Accel_data[6];
     ReadRegister(ACCEL_OUT, Accel_data, 6);
-    data->Ax_RAW = (int16_t)(Accel_data[0] << 8 | Accel_data[1]);
-    data->Ay_RAW = (int16_t)(Accel_data[2] << 8 | Accel_data[3]);
-    data->Az_RAW = (int16_t)(Accel_data[4] << 8 | Accel_data[5]);
+    data->RawData_t.Ax_RAW = (int16_t)(Accel_data[0] << 8 | Accel_data[1]);
+    data->RawData_t.Ay_RAW = (int16_t)(Accel_data[2] << 8 | Accel_data[3]);
+    data->RawData_t.Az_RAW = (int16_t)(Accel_data[4] << 8 | Accel_data[5]);
+
+    data->Data_t.Ax = data->RawData_t.Ax_RAW/data->ScaleData_t.AccelerometerScaleFactor;
+    data->Data_t.Ay = data->RawData_t.Ay_RAW/data->ScaleData_t.AccelerometerScaleFactor;
+    data->Data_t.Az = data->RawData_t.Az_RAW/data->ScaleData_t.AccelerometerScaleFactor;
 
     uint8_t Gyro_data[6];
     SPI_Read(GYRO_OUT, Gyro_data, 6);
-    data->Gx_RAW = (int16_t)(Gyro_data[0] << 8 | Gyro_data[1]);
-    data->Gy_RAW = (int16_t)(Gyro_data[2] << 8 | Gyro_data[3]);
-    data->Gz_RAW = (int16_t)(Gyro_data[4] << 8 | Gyro_data[5]);
+    data->RawData_t.Gx_RAW = (int16_t)(Gyro_data[0] << 8 | Gyro_data[1]);
+    data->RawData_t.Gy_RAW = (int16_t)(Gyro_data[2] << 8 | Gyro_data[3]);
+    data->RawData_t.Gz_RAW = (int16_t)(Gyro_data[4] << 8 | Gyro_data[5]);
 
+    data->Data_t.Gx = data->RawData_t.Gx_RAW/data->ScaleData_t.GyroScaleFactor;
+    data->Data_t.Gy = data->RawData_t.Gy_RAW/data->ScaleData_t.GyroScaleFactor;
+    data->Data_t.Gz = data->RawData_t.Gz_RAW/data->ScaleData_t.GyroScaleFactor;
 }
