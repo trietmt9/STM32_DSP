@@ -23,37 +23,18 @@ static inline void SPI_Deactivate(void)
 }
 
 /**
- * @brief Writes a byte to the MPU-9250 and reads back the response.
- * @param  data: The byte to write to the MPU-9250.
- * @retval The byte read from the MPU-9250.
- */
-static void WriteReadRegister(uint8_t data)
-{
-    uint8_t receive_data;
-    if(HAL_SPI_TransmitReceive(&hspi1,(uint8_t*)&data,(uint8_t*)&receive_data, sizeof(receive_data), SPI_TIMEOUT) != HAL_OK)
-    {
-        return 1;
-    }
-    else 
-    {
-        return receive_data;
-    }
-}
-
-
-/**
  * @brief Reads a single register from the MPU-9250.
  *
  * @param Register The register to read from.
  * @param pBuffer A pointer to the buffer that will store the data read from the register.
  * @param size The size of the buffer, in bytes.
  */
-static void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint16_t size)
+void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
 {
     uint8_t data = Register|0x80;
-    SPI_Active();
-    HAL_SPI_Transmit(&hspi1,&data, sizeof(data), SPI_TIMEOUT);
-    HAL_SPI_Receive(&hspi1, (uint8_t)pBuffer, sizeof(pBuffer), SPI_TIMEOUT);
+    SPI_Activate();
+    HAL_SPI_Transmit(&hspi1, &data, 1, SPI_TIMEOUT);
+    HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
     SPI_Deactivate();
 }
 /**
@@ -62,7 +43,7 @@ static void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint16_t size)
  * @param Register The register to write to.
  * @param pBuffer A pointer to the data to write to the register.
  */
-static void WriteRegister(uint8_t Register, uint8_t* pBuffer)
+void WriteRegister(uint8_t Register, uint8_t* pBuffer)
 {
     SPI_Activate();
     HAL_SPI_Transmit(&hspi1, &Register, sizeof(Register), SPI_TIMEOUT);
@@ -76,9 +57,8 @@ static void WriteRegister(uint8_t Register, uint8_t* pBuffer)
  * @param pScale The imu_t data structure that contains the scale factors.
  * @param Select The Gyroscope full-scale range to set.
  */
-static void Gyro_AFS_Select(imu_t* pScale, uint8_t Select)
+void Gyro_AFS_Select(imu_t* pScale, uint8_t Select)
 {
-    uint8_t GyScale;
     switch(Select)
     {
         case GYRO_FS_250_DPS:
@@ -105,9 +85,8 @@ static void Gyro_AFS_Select(imu_t* pScale, uint8_t Select)
  * @param pScale The imu_t data structure that contains the scale factors.
  * @param Select The accelerometer full-scale range to set.
  */
-static void Accel_AFS_Select(imu_t* pScale, uint8_t Select)
+void Accel_AFS_Select(imu_t* pScale, uint8_t Select)
 {
-    uint8_t AccScale;
     switch(Select)
     {
         case ACCEL_FS_2G:
@@ -134,7 +113,7 @@ static void Accel_AFS_Select(imu_t* pScale, uint8_t Select)
  */
 uint8_t IS_MPU9250_ON() {
     uint8_t check_data;
-    ReadRegisters(WHO_AM_I, &check_data, sizeof(check_data));
+    ReadRegister(WHO_AM_I, &check_data, sizeof(check_data));
     return check_data;
 }
 
@@ -143,11 +122,9 @@ uint8_t IS_MPU9250_ON() {
  * 
  * @return 0 if initialization was successful, 1 otherwise.
  */
-void IMU_Init(imu_t* Data)
+uint8_t IMU_Init(imu_t* Data)
 {
     uint8_t data, range_data;
-    if (IS_MPU9250_ON() == MPU9250_IS_ON)
-    {
         // set power management register to normal mode
         data = 0x00; 
         WriteRegister(PWR_MGMT_1, &data);
@@ -172,11 +149,6 @@ void IMU_Init(imu_t* Data)
         // set sample rate to 1 kHz
         data = 0x00; 
         WriteRegister(SMPLRT_DIV, &data);
-    }
-    else
-    {
-        return 1;
-    }
 }
 
 /**
@@ -184,7 +156,7 @@ void IMU_Init(imu_t* Data)
  * 
  * @param data A pointer to the imu_t data structure that will store the raw sensor data.
  */
-void IMU_Read_Raw(imu_t* data)
+void IMU_Read(imu_t* data)
 {
     uint8_t Accel_data[6];
     ReadRegister(ACCEL_OUT, Accel_data, 6);
@@ -192,17 +164,17 @@ void IMU_Read_Raw(imu_t* data)
     data->RawData_t.Ay_RAW = (int16_t)(Accel_data[2] << 8 | Accel_data[3]);
     data->RawData_t.Az_RAW = (int16_t)(Accel_data[4] << 8 | Accel_data[5]);
 
-    data->Data_t.Ax = data->RawData_t.Ax_RAW/data->ScaleData_t.AccelerometerScaleFactor;
-    data->Data_t.Ay = data->RawData_t.Ay_RAW/data->ScaleData_t.AccelerometerScaleFactor;
-    data->Data_t.Az = data->RawData_t.Az_RAW/data->ScaleData_t.AccelerometerScaleFactor;
+    data->Data_t.Ax = data->RawData_t.Ax_RAW/2048.0;
+    data->Data_t.Ay = data->RawData_t.Ay_RAW/2048.0;
+    data->Data_t.Az = data->RawData_t.Az_RAW/2048.0;
 
     uint8_t Gyro_data[6];
-    SPI_Read(GYRO_OUT, Gyro_data, 6);
+    ReadRegister(GYRO_OUT, Gyro_data, 6);
     data->RawData_t.Gx_RAW = (int16_t)(Gyro_data[0] << 8 | Gyro_data[1]);
     data->RawData_t.Gy_RAW = (int16_t)(Gyro_data[2] << 8 | Gyro_data[3]);
     data->RawData_t.Gz_RAW = (int16_t)(Gyro_data[4] << 8 | Gyro_data[5]);
 
-    data->Data_t.Gx = data->RawData_t.Gx_RAW/data->ScaleData_t.GyroScaleFactor;
-    data->Data_t.Gy = data->RawData_t.Gy_RAW/data->ScaleData_t.GyroScaleFactor;
-    data->Data_t.Gz = data->RawData_t.Gz_RAW/data->ScaleData_t.GyroScaleFactor;
+    data->Data_t.Gx = data->RawData_t.Gx_RAW/131.0;
+    data->Data_t.Gy = data->RawData_t.Gy_RAW/131.0;
+    data->Data_t.Gz = data->RawData_t.Gz_RAW/131.0;
 }

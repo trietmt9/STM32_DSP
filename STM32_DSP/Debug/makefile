@@ -61,7 +61,7 @@ main-build: STM32_DSP.elf secondary-outputs
 
 # Tool invocations
 STM32_DSP.elf STM32_DSP.map: $(OBJS) $(USER_OBJS) C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

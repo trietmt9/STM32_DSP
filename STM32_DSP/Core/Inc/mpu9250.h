@@ -16,10 +16,10 @@ extern SPI_HandleTypeDef hspi1;
 
 /** MPU9250 REGISTERS USED IN THIS PROJECT MACROS **/
 /** Register memory size Variable**/
-const uint8_t  _8_BIT_Register   =  0x8u;
-const uint16_t _16_BIT_Register  =  0x10u;
-const uint32_t _32_BIT_Register  =  0x20u;
-const uint64_t _64_BIT_Register  =  0x40u;
+#define _8_BIT_Register                                 0x8u
+#define _16_BIT_Register                                0x10u
+#define _32_BIT_Register                                0x20u
+#define _64_BIT_Register                                0x40u
 
 /* MACROS for initialize the IMU */
 #define WHO_AM_I                                        0x68u
@@ -37,7 +37,7 @@ const uint64_t _64_BIT_Register  =  0x40u;
 
 /* MACROS */
 
-#define SPI_TIMEOUT                                     500          
+#define SPI_TIMEOUT                                     100          
 
 /** STRUCT FOR READING IMU DATA **/
 typedef struct 
@@ -105,9 +105,9 @@ typedef enum
     DLPF_CFG_5Hz,
 }DLPFcfg_t;
 
-void IMU_Init();
-void IMU_Read_Raw(imu_t* data); 
+uint8_t IMU_Init(imu_t* Data);
+void IMU_Read(imu_t* data); 
 void WriteRegister(uint8_t Register, uint8_t* pBuffer);
-void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint16_t size);
+void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size);
 
 #endif /* INC_MPU9250_H_ */
