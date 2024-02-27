@@ -43,11 +43,11 @@ void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
  * @param Register The register to write to.
  * @param pBuffer A pointer to the data to write to the register.
  */
-void WriteRegister(uint8_t Register, uint8_t* pBuffer)
+void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
 {
     SPI_Activate();
-    HAL_SPI_Transmit(&hspi1, &Register, sizeof(Register), SPI_TIMEOUT);
-    HAL_SPI_Transmit(&hspi1, (uint8_t*)pBuffer, sizeof(pBuffer), SPI_TIMEOUT);
+    HAL_SPI_Transmit(&hspi1, &Register, 1, SPI_TIMEOUT);
+    HAL_SPI_Transmit(&hspi1, &pBuffer, 1, SPI_TIMEOUT);
     SPI_Deactivate();
 }
 
@@ -124,31 +124,29 @@ uint8_t IS_MPU9250_ON() {
  */
 uint8_t IMU_Init(imu_t* Data)
 {
-    uint8_t data, range_data;
+    uint8_t data;
+        data = 0x10u;
+        WriteRegister(USER_CTRL, &data);
         // set power management register to normal mode
         data = 0x00; 
         WriteRegister(PWR_MGMT_1, &data);
         WriteRegister(PWR_MGMT_2, &data);
 
         // set accelerometer range to +/- 16g
-        range_data = ACCEL_FS_16G; 
-        Accel_AFS_Select(Data, range_data);
-        data = (ACCEL_FS_16G * _8_BIT_Register); 
-        WriteRegister(ACCEL_CONFIG_1, &data);
+        // data = (ACCEL_FS_16G * _8_BIT_Register); 
+        // WriteRegister(ACCEL_CONFIG_1, &data);
 
-        // set gyroscope range to +/- 250 degrees/s
-        range_data = GYRO_FS_250_DPS; 
-        Gyro_AFS_Select(Data, range_data);
-        data = (GYRO_FS_250_DPS * _8_BIT_Register); 
-        WriteRegister(GYRO_CONFIG, &data);
+        // // set gyroscope range to +/- 250 degrees/s
+        // data = (GYRO_FS_250_DPS * _8_BIT_Register); 
+        // WriteRegister(GYRO_CONFIG, &data);
 
-        // set accelerometer bandwidth to 184 Hz
-        data = DLPF_CFG_184Hz; 
-        WriteRegister(ACCEL_CONFIG_2, &data);
+        // // set accelerometer bandwidth to 184 Hz
+        // data = DLPF_CFG_184Hz; 
+        // WriteRegister(ACCEL_CONFIG_2, &data);
 
-        // set sample rate to 1 kHz
-        data = 0x00; 
-        WriteRegister(SMPLRT_DIV, &data);
+        // // set sample rate to 1 kHz
+        // data = 0x00; 
+        // WriteRegister(SMPLRT_DIV, &data);
 }
 
 /**
@@ -158,8 +156,8 @@ uint8_t IMU_Init(imu_t* Data)
  */
 void IMU_Read(imu_t* data)
 {
-    uint8_t Accel_data[6];
-    ReadRegister(ACCEL_OUT, Accel_data, 6);
+    uint16_t Accel_data[14];
+    ReadRegister(ACCEL_OUT, Accel_data, 14);
     data->RawData_t.Ax_RAW = (int16_t)(Accel_data[0] << 8 | Accel_data[1]);
     data->RawData_t.Ay_RAW = (int16_t)(Accel_data[2] << 8 | Accel_data[3]);
     data->RawData_t.Az_RAW = (int16_t)(Accel_data[4] << 8 | Accel_data[5]);
@@ -168,11 +166,11 @@ void IMU_Read(imu_t* data)
     data->Data_t.Ay = data->RawData_t.Ay_RAW/2048.0;
     data->Data_t.Az = data->RawData_t.Az_RAW/2048.0;
 
-    uint8_t Gyro_data[6];
-    ReadRegister(GYRO_OUT, Gyro_data, 6);
-    data->RawData_t.Gx_RAW = (int16_t)(Gyro_data[0] << 8 | Gyro_data[1]);
-    data->RawData_t.Gy_RAW = (int16_t)(Gyro_data[2] << 8 | Gyro_data[3]);
-    data->RawData_t.Gz_RAW = (int16_t)(Gyro_data[4] << 8 | Gyro_data[5]);
+    // uint8_t Gyro_data[6];
+    // ReadRegister(GYRO_OUT, Gyro_data, 6);
+    data->RawData_t.Gx_RAW = (int16_t)(Accel_data[8]  << 8 | Accel_data[9]);
+    data->RawData_t.Gy_RAW = (int16_t)(Accel_data[10] << 8 | Accel_data[11]);
+    data->RawData_t.Gz_RAW = (int16_t)(Accel_data[12] << 8 | Accel_data[13]);
 
     data->Data_t.Gx = data->RawData_t.Gx_RAW/131.0;
     data->Data_t.Gy = data->RawData_t.Gy_RAW/131.0;

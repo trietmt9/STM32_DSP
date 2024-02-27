@@ -1,17 +1,10 @@
-23:23:14 **** Incremental Build of configuration Debug for project STM32_DSP ****
+16:49:45 **** Incremental Build of configuration Debug for project STM32_DSP ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
 arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
    text	   data	    bss	    dec	    hex	filename
-  28504	    476	   2156	  31136	   79a0	STM32_DSP.elf
+  26800	    476	   2140	  29416	   72e8	STM32_DSP.elf
 Finished building: default.size.stdout
  
-Finished building: STM32_DSP.list
- 
 
-23:23:14 Build Finished. 0 errors, 0 warnings. (took 650ms)
+16:49:45 Build Finished. 0 errors, 0 warnings. (took 189ms)
 

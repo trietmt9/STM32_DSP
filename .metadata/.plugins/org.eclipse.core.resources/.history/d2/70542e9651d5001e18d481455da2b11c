@@ -30,7 +30,7 @@ extern SPI_HandleTypeDef hspi1;
 #define ACCEL_CONFIG_1                                  0x1Cu
 #define ACCEL_CONFIG_2                                  0x1Du
 #define MPU9250_IS_ON                                   0x71u
-
+#define USER_CTRL                                       0x6Au                                  
 /* MACROS for reading the IMU*/
 #define GYRO_OUT                                        0x43u
 #define ACCEL_OUT                                       0x3Bu
@@ -107,7 +107,7 @@ typedef enum
 
 uint8_t IMU_Init(imu_t* Data);
 void IMU_Read(imu_t* data); 
-void WriteRegister(uint8_t Register, uint8_t* pBuffer);
-void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size);
+void WriteRegister(uint8_t* Register, uint8_t* pBuffer);
+void ReadRegister(uint8_t* Register, uint8_t* pBuffer, uint8_t size);
 
 #endif /* INC_MPU9250_H_ */
