@@ -6,7 +6,7 @@
  */
 
 #include <mpu9250-i2c.h>
-uint8_t IS_MPU9250_ON(uint8_t addr)
+uint8_t CHECK_MPU9250(uint8_t addr)
 {   
     uint8_t check;
     uint8_t _addr = addr << 1;
@@ -20,7 +20,7 @@ uint8_t IS_MPU9250_ON(uint8_t addr)
         return 1;
     }
 }   
-void ACCEL_SCALE(I2C_HandleTypeDef I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pScaleAcc)
+void ACCEL_SCALE(I2C_HandleTypeDef* I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pScaleAcc)
 {
     switch(Scale)
     {
@@ -47,7 +47,7 @@ void ACCEL_SCALE(I2C_HandleTypeDef I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pS
     }
 }
 
-void GYRO_SCALE(I2C_HandleTypeDef I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pScaleGyro)
+void GYRO_SCALE(I2C_HandleTypeDef* I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pScaleGyro)
 {
     switch(Scale)
     {
@@ -73,7 +73,7 @@ void GYRO_SCALE(I2C_HandleTypeDef I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pSc
             break;
     }
 }
-void IMU_INIT(I2C_HandleTypeDef I2Cx, uint8_t addr, imu_t* pIMU;,uint8_t AccelScale, uint8_t GyroScale)
+void IMU_INIT(I2C_HandleTypeDef* I2Cx, uint8_t addr, imu_t* pIMU, uint8_t AccelScale, uint8_t GyroScale)
 {
     uint8_t _addr = addr << 1;
     uint8_t data;
@@ -84,13 +84,17 @@ void IMU_INIT(I2C_HandleTypeDef I2Cx, uint8_t addr, imu_t* pIMU;,uint8_t AccelSc
         HAL_I2C_Mem_Write(&I2Cx, _addr, PWR_MGMT_1, 1, &data , 1,I2C_TIMEOUT);
         data = 0x00u;
         HAL_I2C_Mem_Write(&I2Cx, _addr, SMPLRT_DIV, 1, &data, 1,I2C_TIMEOUT);
-        ACCEL_SCALE(I2Cx, _addr, AccelScale, &pIMU);
-        GYRO_SCALE(I2Cx, _addr, GyroScale, &pIMU);
+        ACCEL_SCALE(&I2Cx, _addr, AccelScale, &pIMU);
+        GYRO_SCALE(&I2Cx, _addr, GyroScale, &pIMU);
     }
 }
 
-uint8_t IMU_read(uint8_t addr, imu_t *pIMU)
+uint8_t IMU_read(I2C_HandleTypeDef* I2Cx ,uint8_t addr, imu_t *pIMU)
 {
     uint8_t _addr = addr << 1;
     uint8_t Acceldata[6];
+    HAL_I2C_Mem_Read(&I2Cx, _addr, ACCEL_OUT, 1, &Acceldata, 6, I2C_TIMEOUT);
+    pIMU->RawData_t.Ax_RAW = (int16_t)((Acceldata[0] << 8) | Acceldata[1]);
+    pIMU->RawData_t.Ay_RAW = (int16_t)((Acceldata[2] << 8) | Acceldata[3]);
+    pIMU->RawData_t.Az_RAW = (int16_t)((Acceldata[4] << 8) | Acceldata[5]);
 }

@@ -114,8 +114,8 @@ typedef enum
     DLPF_CFG_5Hz,
 }DLPFcfg_t;
 
-uint8_t IS_MPU9250_ON(uint8_t addr);
-uint8_t IMU_Init(imu_t* Data);
-void IMU_Read(imu_t* data); 
+uint8_t CHECK_MPU9250(uint8_t addr);
+void IMU_Init(I2C_HandleTypeDef I2Cx, uint8_t addr, imu_t* pIMU,uint8_t AccelScale, uint8_t GyroScale);
+void IMU_Read(uint8_t addr, imu_t *pIMU); 
 
 #endif /* INC_MPU9250_H_ */

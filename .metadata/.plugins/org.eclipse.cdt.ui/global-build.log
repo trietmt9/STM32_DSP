@@ -1,145 +1,308 @@
-16:21:28 **** Incremental Build of configuration Debug for project STM32_DSP ****
+15:05:08 **** Incremental Build of configuration Debug for project STM32_DSP ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/mpu9250.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250.d" -MT"Core/Src/mpu9250.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250.o"
-../Core/Src/mpu9250.c: In function 'ReadRegister':
-../Core/Src/mpu9250.c:37:29: warning: passing argument 2 of 'HAL_SPI_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
-   37 |     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
-      |                             ^~~~~~~~
-      |                             |
-      |                             uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
+arm-none-eabi-gcc "../Core/Src/mpu9250-i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250-i2c.d" -MT"Core/Src/mpu9250-i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250-i2c.o"
+../Core/Src/mpu9250-i2c.c: In function 'ACCEL_SCALE':
+../Core/Src/mpu9250-i2c.c:29:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   29 |             HAL_I2C_Mem_Write(&I2Cx, _addr, ACCEL_CONFIG_1, 1, ACCEL_FS_2G, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
                  from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
                  from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:671:69: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  671 | HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                            ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c: In function 'WriteRegister':
-../Core/Src/mpu9250.c:49:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   49 |     HAL_SPI_Transmit(&hspi1, &Register, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:33:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   33 |             HAL_I2C_Mem_Write(&I2Cx, _addr, ACCEL_CONFIG_1, 1, ACCEL_FS_4G, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
                  from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
                  from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c:50:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   50 |     HAL_SPI_Transmit(&hspi1, &pBuffer, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:33:64: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+   33 |             HAL_I2C_Mem_Write(&I2Cx, _addr, ACCEL_CONFIG_1, 1, ACCEL_FS_4G, 1, I2C_TIMEOUT);
+      |                                                                ^~~~~~~~~~~
+      |                                                                |
+      |                                                                int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
                  from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
                  from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Inc/mpu9250.h:33:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   33 | #define USER_CTRL                                       0x6Au
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:129:23: note: in expansion of macro 'USER_CTRL'
-  129 |         WriteRegister(USER_CTRL, &data);
-      |                       ^~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:27:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   27 | #define PWR_MGMT_1                                      0x6Bu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:132:23: note: in expansion of macro 'PWR_MGMT_1'
-  132 |         WriteRegister(PWR_MGMT_1, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:28:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   28 | #define PWR_MGMT_2                                      0x6Cu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:133:23: note: in expansion of macro 'PWR_MGMT_2'
-  133 |         WriteRegister(PWR_MGMT_2, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:30:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   30 | #define ACCEL_CONFIG_1                                  0x1Cu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:137:23: note: in expansion of macro 'ACCEL_CONFIG_1'
-  137 |         WriteRegister(ACCEL_CONFIG_1, &data);
-      |                       ^~~~~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:29:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   29 | #define GYRO_CONFIG                                     0x1Bu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:141:23: note: in expansion of macro 'GYRO_CONFIG'
-  141 |         WriteRegister(GYRO_CONFIG, &data);
-      |                       ^~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:31:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   31 | #define ACCEL_CONFIG_2                                  0x1Du
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:145:23: note: in expansion of macro 'ACCEL_CONFIG_2'
-  145 |         WriteRegister(ACCEL_CONFIG_2, &data);
-      |                       ^~~~~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:26:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   26 | #define SMPLRT_DIV                                      0x19u
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:149:23: note: in expansion of macro 'SMPLRT_DIV'
-  149 |         WriteRegister(SMPLRT_DIV, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Read':
-../Core/Src/mpu9250.c:160:29: warning: passing argument 2 of 'ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
-  160 |     ReadRegister(ACCEL_OUT, Accel_data, 14);
-      |                             ^~~~~~~~~~
-      |                             |
-      |                             uint16_t * {aka short unsigned int *}
-../Core/Src/mpu9250.c:32:46: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
-   32 | void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
-      |                                     ~~~~~~~~~^~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Src/mpu9250.c:150:1: warning: control reaches end of non-void function [-Wreturn-type]
-  150 | }
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/mpu9250-i2c.c:37:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   37 |             HAL_I2C_Mem_Write(&I2Cx, _addr, ACCEL_CONFIG_1, 1, ACCEL_FS_8G, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:37:64: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+   37 |             HAL_I2C_Mem_Write(&I2Cx, _addr, ACCEL_CONFIG_1, 1, ACCEL_FS_8G, 1, I2C_TIMEOUT);
+      |                                                                ^~~~~~~~~~~
+      |                                                                |
+      |                                                                int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/mpu9250-i2c.c:41:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   41 |             HAL_I2C_Mem_Write(&I2Cx, _addr, ACCEL_CONFIG_1, 1, ACCEL_FS_16G, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:41:64: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+   41 |             HAL_I2C_Mem_Write(&I2Cx, _addr, ACCEL_CONFIG_1, 1, ACCEL_FS_16G, 1, I2C_TIMEOUT);
+      |                                                                ^~~~~~~~~~~~
+      |                                                                |
+      |                                                                int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/mpu9250-i2c.c:45:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   45 |             HAL_I2C_Mem_Write(&I2Cx, _addr, ACCEL_CONFIG_1, 1, ACCEL_FS_2G, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c: In function 'GYRO_SCALE':
+../Core/Src/mpu9250-i2c.c:56:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   56 |             HAL_I2C_Mem_Write(&I2Cx, _addr, GYRO_CONFIG, 1, GYRO_FS_250_DPS, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:60:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   60 |             HAL_I2C_Mem_Write(&I2Cx, _addr, GYRO_CONFIG, 1, GYRO_FS_500_DPS, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:60:61: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+   60 |             HAL_I2C_Mem_Write(&I2Cx, _addr, GYRO_CONFIG, 1, GYRO_FS_500_DPS, 1, I2C_TIMEOUT);
+      |                                                             ^~~~~~~~~~~~~~~
+      |                                                             |
+      |                                                             int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/mpu9250-i2c.c:64:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   64 |             HAL_I2C_Mem_Write(&I2Cx, _addr, GYRO_CONFIG, 1, GYRO_FS_1000_DPS, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:64:61: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+   64 |             HAL_I2C_Mem_Write(&I2Cx, _addr, GYRO_CONFIG, 1, GYRO_FS_1000_DPS, 1, I2C_TIMEOUT);
+      |                                                             ^~~~~~~~~~~~~~~~
+      |                                                             |
+      |                                                             int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/mpu9250-i2c.c:68:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   68 |             HAL_I2C_Mem_Write(&I2Cx, _addr, GYRO_CONFIG, 1, GYRO_FS_2000_DPS, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:68:61: warning: passing argument 5 of 'HAL_I2C_Mem_Write' makes pointer from integer without a cast [-Wint-conversion]
+   68 |             HAL_I2C_Mem_Write(&I2Cx, _addr, GYRO_CONFIG, 1, GYRO_FS_2000_DPS, 1, I2C_TIMEOUT);
+      |                                                             ^~~~~~~~~~~~~~~~
+      |                                                             |
+      |                                                             int
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:134: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                             ~~~~~~~~~^~~~~
+../Core/Src/mpu9250-i2c.c:72:31: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   72 |             HAL_I2C_Mem_Write(&I2Cx, _addr, GYRO_CONFIG, 1, GYRO_FS_250_DPS, 1, I2C_TIMEOUT);
+      |                               ^~~~~
+      |                               |
+      |                               I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c: In function 'IMU_INIT':
+../Core/Src/mpu9250-i2c.c:81:8: warning: implicit declaration of function 'IS_MPU9250_ON'; did you mean 'INC_MPU9250_H_'? [-Wimplicit-function-declaration]
+   81 |     if(IS_MPU9250_ON(addr) == HAL_OK)
+      |        ^~~~~~~~~~~~~
+      |        INC_MPU9250_H_
+../Core/Src/mpu9250-i2c.c:84:27: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   84 |         HAL_I2C_Mem_Write(&I2Cx, _addr, PWR_MGMT_1, 1, &data , 1,I2C_TIMEOUT);
+      |                           ^~~~~
+      |                           |
+      |                           I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:86:27: warning: passing argument 1 of 'HAL_I2C_Mem_Write' from incompatible pointer type [-Wincompatible-pointer-types]
+   86 |         HAL_I2C_Mem_Write(&I2Cx, _addr, SMPLRT_DIV, 1, &data, 1,I2C_TIMEOUT);
+      |                           ^~~~~
+      |                           |
+      |                           I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:570:56: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  570 | HAL_StatusTypeDef HAL_I2C_Mem_Write(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                     ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:87:21: warning: passing argument 1 of 'ACCEL_SCALE' from incompatible pointer type [-Wincompatible-pointer-types]
+   87 |         ACCEL_SCALE(&I2Cx, _addr, AccelScale, &pIMU);
+      |                     ^~~~~
+      |                     |
+      |                     I2C_HandleTypeDef **
+../Core/Src/mpu9250-i2c.c:23:37: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+   23 | void ACCEL_SCALE(I2C_HandleTypeDef* I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pScaleAcc)
+      |                  ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:87:47: warning: passing argument 4 of 'ACCEL_SCALE' from incompatible pointer type [-Wincompatible-pointer-types]
+   87 |         ACCEL_SCALE(&I2Cx, _addr, AccelScale, &pIMU);
+      |                                               ^~~~~
+      |                                               |
+      |                                               imu_t **
+../Core/Src/mpu9250-i2c.c:23:80: note: expected 'imu_t *' but argument is of type 'imu_t **'
+   23 | void ACCEL_SCALE(I2C_HandleTypeDef* I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pScaleAcc)
+      |                                                                         ~~~~~~~^~~~~~~~~
+../Core/Src/mpu9250-i2c.c:88:20: warning: passing argument 1 of 'GYRO_SCALE' from incompatible pointer type [-Wincompatible-pointer-types]
+   88 |         GYRO_SCALE(&I2Cx, _addr, GyroScale, &pIMU);
+      |                    ^~~~~
+      |                    |
+      |                    I2C_HandleTypeDef **
+../Core/Src/mpu9250-i2c.c:50:36: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+   50 | void GYRO_SCALE(I2C_HandleTypeDef* I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pScaleGyro)
+      |                 ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:88:45: warning: passing argument 4 of 'GYRO_SCALE' from incompatible pointer type [-Wincompatible-pointer-types]
+   88 |         GYRO_SCALE(&I2Cx, _addr, GyroScale, &pIMU);
+      |                                             ^~~~~
+      |                                             |
+      |                                             imu_t **
+../Core/Src/mpu9250-i2c.c:50:79: note: expected 'imu_t *' but argument is of type 'imu_t **'
+   50 | void GYRO_SCALE(I2C_HandleTypeDef* I2Cx, uint8_t _addr, uint8_t Scale, imu_t* pScaleGyro)
+      |                                                                        ~~~~~~~^~~~~~~~~~
+../Core/Src/mpu9250-i2c.c: In function 'IMU_read':
+../Core/Src/mpu9250-i2c.c:96:22: warning: passing argument 1 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+   96 |     HAL_I2C_Mem_Read(&I2Cx, _addr, ACCEL_OUT, 1, &Acceldata, 6, I2C_TIMEOUT);
+      |                      ^~~~~
+      |                      |
+      |                      I2C_HandleTypeDef **
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:571:55: note: expected 'I2C_HandleTypeDef *' but argument is of type 'I2C_HandleTypeDef **'
+  571 | HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                    ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/mpu9250-i2c.c:96:50: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
+   96 |     HAL_I2C_Mem_Read(&I2Cx, _addr, ACCEL_OUT, 1, &Acceldata, 6, I2C_TIMEOUT);
+      |                                                  ^~~~~~~~~~
+      |                                                  |
+      |                                                  uint8_t (*)[6] {aka unsigned char (*)[6]}
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-i2c.h:20,
+                 from ../Core/Src/mpu9250-i2c.c:8:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:571:133: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
+  571 | HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                                                            ~~~~~~~~~^~~~~
+../Core/Src/mpu9250-i2c.c:100:1: warning: control reaches end of non-void function [-Wreturn-type]
+  100 | }
       | ^
 arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: STM32_DSP.elf
@@ -147,654 +310,8 @@ Finished building target: STM32_DSP.elf
 arm-none-eabi-size  STM32_DSP.elf 
 arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
    text	   data	    bss	    dec	    hex	filename
-  27656	    476	   2156	  30288	   7650	STM32_DSP.elf
+  27720	    476	   2220	  30416	   76d0	STM32_DSP.elf
 Finished building: default.size.stdout
  
 Finished building: STM32_DSP.list
- 
-16:21:35 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-size  STM32_DSP.elf 
-   text	   data	    bss	    dec	    hex	filename
-  27656	    476	   2156	  30288	   7650	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-16:21:48 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-size  STM32_DSP.elf 
-   text	   data	    bss	    dec	    hex	filename
-  27656	    476	   2156	  30288	   7650	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-16:26:31 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/mpu9250.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250.d" -MT"Core/Src/mpu9250.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250.o"
-../Core/Src/mpu9250.c: In function 'ReadRegister':
-../Core/Src/mpu9250.c:37:29: warning: passing argument 2 of 'HAL_SPI_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
-   37 |     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
-      |                             ^~~~~~~~
-      |                             |
-      |                             uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:671:69: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  671 | HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                            ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c: In function 'WriteRegister':
-../Core/Src/mpu9250.c:49:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   49 |     HAL_SPI_Transmit(&hspi1, &Register, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c:50:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   50 |     HAL_SPI_Transmit(&hspi1, &pBuffer, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Inc/mpu9250.h:33:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   33 | #define USER_CTRL                                       0x6Au
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:129:23: note: in expansion of macro 'USER_CTRL'
-  129 |         WriteRegister(USER_CTRL, &data);
-      |                       ^~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:27:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   27 | #define PWR_MGMT_1                                      0x6Bu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:132:23: note: in expansion of macro 'PWR_MGMT_1'
-  132 |         WriteRegister(PWR_MGMT_1, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:28:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   28 | #define PWR_MGMT_2                                      0x6Cu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:133:23: note: in expansion of macro 'PWR_MGMT_2'
-  133 |         WriteRegister(PWR_MGMT_2, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Read':
-../Core/Src/mpu9250.c:160:29: warning: passing argument 2 of 'ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
-  160 |     ReadRegister(ACCEL_OUT, Accel_data, 14);
-      |                             ^~~~~~~~~~
-      |                             |
-      |                             uint16_t * {aka short unsigned int *}
-../Core/Src/mpu9250.c:32:46: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
-   32 | void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
-      |                                     ~~~~~~~~~^~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Src/mpu9250.c:150:1: warning: control reaches end of non-void function [-Wreturn-type]
-  150 | }
-      | ^
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  27592	    476	   2156	  30224	   7610	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:27:00 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  27592	    476	   2156	  30224	   7610	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:27:45 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/mpu9250.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250.d" -MT"Core/Src/mpu9250.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250.o"
-../Core/Src/mpu9250.c: In function 'ReadRegister':
-../Core/Src/mpu9250.c:37:29: warning: passing argument 2 of 'HAL_SPI_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
-   37 |     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
-      |                             ^~~~~~~~
-      |                             |
-      |                             uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:671:69: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  671 | HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                            ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c: In function 'WriteRegister':
-../Core/Src/mpu9250.c:49:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   49 |     HAL_SPI_Transmit(&hspi1, &Register, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c:50:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   50 |     HAL_SPI_Transmit(&hspi1, &pBuffer, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Inc/mpu9250.h:33:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   33 | #define USER_CTRL                                       0x6Au
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:129:23: note: in expansion of macro 'USER_CTRL'
-  129 |         WriteRegister(USER_CTRL, &data);
-      |                       ^~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:27:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   27 | #define PWR_MGMT_1                                      0x6Bu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:132:23: note: in expansion of macro 'PWR_MGMT_1'
-  132 |         WriteRegister(PWR_MGMT_1, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:28:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   28 | #define PWR_MGMT_2                                      0x6Cu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:133:23: note: in expansion of macro 'PWR_MGMT_2'
-  133 |         WriteRegister(PWR_MGMT_2, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-../Core/Src/mpu9250.c:135:10: error: unknown type name 'set'
-  135 |          set accelerometer range to +/- 16g
-      |          ^~~
-../Core/Src/mpu9250.c:135:28: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'range'
-  135 |          set accelerometer range to +/- 16g
-      |                            ^~~~~
-../Core/Src/mpu9250.c:135:41: error: invalid suffix "g" on integer constant
-  135 |          set accelerometer range to +/- 16g
-      |                                         ^~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:30:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   30 | #define ACCEL_CONFIG_1                                  0x1Cu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:137:24: note: in expansion of macro 'ACCEL_CONFIG_1'
-  137 |          WriteRegister(ACCEL_CONFIG_1, &data);
-      |                        ^~~~~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:29:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   29 | #define GYRO_CONFIG                                     0x1Bu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:141:24: note: in expansion of macro 'GYRO_CONFIG'
-  141 |          WriteRegister(GYRO_CONFIG, &data);
-      |                        ^~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:31:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   31 | #define ACCEL_CONFIG_2                                  0x1Du
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:145:24: note: in expansion of macro 'ACCEL_CONFIG_2'
-  145 |          WriteRegister(ACCEL_CONFIG_2, &data);
-      |                        ^~~~~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:26:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   26 | #define SMPLRT_DIV                                      0x19u
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:149:24: note: in expansion of macro 'SMPLRT_DIV'
-  149 |          WriteRegister(SMPLRT_DIV, &data);
-      |                        ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Read':
-../Core/Src/mpu9250.c:160:29: warning: passing argument 2 of 'ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
-  160 |     ReadRegister(ACCEL_OUT, Accel_data, 14);
-      |                             ^~~~~~~~~~
-      |                             |
-      |                             uint16_t * {aka short unsigned int *}
-../Core/Src/mpu9250.c:32:46: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
-   32 | void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
-      |                                     ~~~~~~~~~^~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Src/mpu9250.c:150:1: warning: control reaches end of non-void function [-Wreturn-type]
-  150 | }
-      | ^
-make: *** [Core/Src/subdir.mk:37: Core/Src/mpu9250.o] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
-16:28:05 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/mpu9250.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250.d" -MT"Core/Src/mpu9250.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250.o"
-../Core/Src/mpu9250.c: In function 'ReadRegister':
-../Core/Src/mpu9250.c:37:29: warning: passing argument 2 of 'HAL_SPI_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
-   37 |     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
-      |                             ^~~~~~~~
-      |                             |
-      |                             uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:671:69: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  671 | HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                            ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c: In function 'WriteRegister':
-../Core/Src/mpu9250.c:49:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   49 |     HAL_SPI_Transmit(&hspi1, &Register, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c:50:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   50 |     HAL_SPI_Transmit(&hspi1, &pBuffer, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Inc/mpu9250.h:33:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   33 | #define USER_CTRL                                       0x6Au
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:129:23: note: in expansion of macro 'USER_CTRL'
-  129 |         WriteRegister(USER_CTRL, &data);
-      |                       ^~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:27:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   27 | #define PWR_MGMT_1                                      0x6Bu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:132:23: note: in expansion of macro 'PWR_MGMT_1'
-  132 |         WriteRegister(PWR_MGMT_1, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:28:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   28 | #define PWR_MGMT_2                                      0x6Cu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:133:23: note: in expansion of macro 'PWR_MGMT_2'
-  133 |         WriteRegister(PWR_MGMT_2, &data);
-      |                       ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:30:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   30 | #define ACCEL_CONFIG_1                                  0x1Cu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:137:24: note: in expansion of macro 'ACCEL_CONFIG_1'
-  137 |          WriteRegister(ACCEL_CONFIG_1, &data);
-      |                        ^~~~~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:29:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   29 | #define GYRO_CONFIG                                     0x1Bu
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:141:24: note: in expansion of macro 'GYRO_CONFIG'
-  141 |          WriteRegister(GYRO_CONFIG, &data);
-      |                        ^~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:31:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   31 | #define ACCEL_CONFIG_2                                  0x1Du
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:145:24: note: in expansion of macro 'ACCEL_CONFIG_2'
-  145 |          WriteRegister(ACCEL_CONFIG_2, &data);
-      |                        ^~~~~~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-In file included from ../Core/Src/mpu9250.c:7:
-../Core/Inc/mpu9250.h:26:57: warning: passing argument 1 of 'WriteRegister' makes pointer from integer without a cast [-Wint-conversion]
-   26 | #define SMPLRT_DIV                                      0x19u
-      |                                                         ^~~~~
-      |                                                         |
-      |                                                         unsigned int
-../Core/Src/mpu9250.c:149:24: note: in expansion of macro 'SMPLRT_DIV'
-  149 |          WriteRegister(SMPLRT_DIV, &data);
-      |                        ^~~~~~~~~~
-../Core/Src/mpu9250.c:46:29: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'unsigned int'
-   46 | void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
-      |                    ~~~~~~~~~^~~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Read':
-../Core/Src/mpu9250.c:160:29: warning: passing argument 2 of 'ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
-  160 |     ReadRegister(ACCEL_OUT, Accel_data, 14);
-      |                             ^~~~~~~~~~
-      |                             |
-      |                             uint16_t * {aka short unsigned int *}
-../Core/Src/mpu9250.c:32:46: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
-   32 | void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
-      |                                     ~~~~~~~~~^~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Src/mpu9250.c:150:1: warning: control reaches end of non-void function [-Wreturn-type]
-  150 | }
-      | ^
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  27656	    476	   2156	  30288	   7650	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:28:34 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  27656	    476	   2156	  30288	   7650	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:28:46 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-size  STM32_DSP.elf 
-   text	   data	    bss	    dec	    hex	filename
-  27656	    476	   2156	  30288	   7650	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-16:29:26 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  27736	    476	   2156	  30368	   76a0	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:30:08 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  28272	    476	   2156	  30904	   78b8	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:32:40 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  28304	    476	   2156	  30936	   78d8	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:35:38 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/mpu9250.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250.d" -MT"Core/Src/mpu9250.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250.o"
-../Core/Src/mpu9250.c: In function 'ReadRegister':
-../Core/Src/mpu9250.c:37:29: warning: passing argument 2 of 'HAL_SPI_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
-   37 |     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
-      |                             ^~~~~~~~
-      |                             |
-      |                             uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:671:69: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  671 | HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                            ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c: In function 'WriteRegister':
-../Core/Src/mpu9250.c:49:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   49 |     HAL_SPI_Transmit(&hspi1, &Register, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c:50:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   50 |     HAL_SPI_Transmit(&hspi1, &pBuffer, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Read':
-../Core/Src/mpu9250.c:168:29: warning: passing argument 2 of 'ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
-  168 |     ReadRegister(ACCEL_OUT, Accel_data, 14);
-      |                             ^~~~~~~~~~
-      |                             |
-      |                             uint16_t * {aka short unsigned int *}
-../Core/Src/mpu9250.c:32:46: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
-   32 | void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
-      |                                     ~~~~~~~~~^~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Src/mpu9250.c:158:1: warning: control reaches end of non-void function [-Wreturn-type]
-  158 | }
-      | ^
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  28368	    476	   2156	  31000	   7918	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:49:41 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/mpu9250.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250.d" -MT"Core/Src/mpu9250.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250.o"
-../Core/Src/mpu9250.c: In function 'ReadRegister':
-../Core/Src/mpu9250.c:37:29: warning: passing argument 2 of 'HAL_SPI_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
-   37 |     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
-      |                             ^~~~~~~~
-      |                             |
-      |                             uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:671:69: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  671 | HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                            ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c: In function 'WriteRegister':
-../Core/Src/mpu9250.c:49:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   49 |     HAL_SPI_Transmit(&hspi1, &Register, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c:50:30: warning: passing argument 2 of 'HAL_SPI_Transmit' from incompatible pointer type [-Wincompatible-pointer-types]
-   50 |     HAL_SPI_Transmit(&hspi1, &pBuffer, 1, SPI_TIMEOUT);
-      |                              ^~~~~~~~
-      |                              |
-      |                              uint8_t ** {aka unsigned char **}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250.h:13,
-                 from ../Core/Src/mpu9250.c:7:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:670:70: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
-  670 | HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                             ~~~~~~~~~^~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Read':
-../Core/Src/mpu9250.c:168:29: warning: passing argument 2 of 'ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
-  168 |     ReadRegister(ACCEL_OUT, Accel_data, 14);
-      |                             ^~~~~~~~~~
-      |                             |
-      |                             uint16_t * {aka short unsigned int *}
-../Core/Src/mpu9250.c:32:46: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
-   32 | void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
-      |                                     ~~~~~~~~~^~~~~~~
-../Core/Src/mpu9250.c: In function 'IMU_Init':
-../Core/Src/mpu9250.c:158:1: warning: control reaches end of non-void function [-Wreturn-type]
-  158 | }
-      | ^
-arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: STM32_DSP.elf
- 
-arm-none-eabi-size  STM32_DSP.elf 
-arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
-   text	   data	    bss	    dec	    hex	filename
-  26800	    476	   2140	  29416	   72e8	STM32_DSP.elf
-Finished building: default.size.stdout
- 
-Finished building: STM32_DSP.list
- 
-16:49:45 **** Incremental Build of configuration Debug for project STM32_DSP ****
-make -j16 all 
-arm-none-eabi-size  STM32_DSP.elf 
-   text	   data	    bss	    dec	    hex	filename
-  26800	    476	   2140	  29416	   72e8	STM32_DSP.elf
-Finished building: default.size.stdout
  
