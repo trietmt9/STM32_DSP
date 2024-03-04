@@ -88,3 +88,9 @@ void IMU_INIT(I2C_HandleTypeDef I2Cx, uint8_t addr, imu_t* pIMU;,uint8_t AccelSc
         GYRO_SCALE(I2Cx, _addr, GyroScale, &pIMU);
     }
 }
+
+uint8_t IMU_read(uint8_t addr, imu_t *pIMU)
+{
+    uint8_t _addr = addr << 1;
+    uint8_t Acceldata[6];
+}
