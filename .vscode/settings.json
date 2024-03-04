@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "mpu9250-spi.h": "c"
+        "mpu9250-spi.h": "c",
+        "stdio.h": "c",
+        "_mingw.h": "c",
+        "msvcrtver.h": "c"
     }
 }

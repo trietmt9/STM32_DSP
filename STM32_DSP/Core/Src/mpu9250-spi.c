@@ -31,7 +31,7 @@ static inline void SPI_Deactivate(void)
  */
 void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
 {
-    uint8_t data = Register|0x80;
+    uint8_t data = 0x80u|Register;
     SPI_Activate();
     HAL_SPI_Transmit(&hspi1, &data, 1, SPI_TIMEOUT);
     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);

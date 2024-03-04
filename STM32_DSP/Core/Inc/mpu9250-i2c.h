@@ -14,6 +14,7 @@
 #ifndef INC_MPU9250_H_
 #define INC_MPU9250_H_
 #include <stdint.h>
+#include <stdio.h>
 #include <stm32f446xx.h>
 #include <math.h>
 #include <main.h>
@@ -28,6 +29,8 @@ extern I2C_HandleTypeDef hi2c1;
 #define _64_BIT_Register                                0x40u
 
 /* MACROS for initialize the IMU */
+#define MPU9250_ADDRESS                                 0x68u
+#define MPU9250_READY                                   0x71u    
 #define WHO_AM_I                                        0x75u
 #define SMPLRT_DIV                                      0x19u
 #define PWR_MGMT_1                                      0x6Bu
@@ -84,21 +87,21 @@ typedef struct
 }imu_t;
 
 /* List of mode for configure the sensor */
-typedef enum
+enum
 {
-    ACCEL_FS_2G,
-    ACCEL_FS_4G,
-    ACCEL_FS_8G,
-    ACCEL_FS_16G
-}AccelRange_t;
+    ACCEL_FS_2G     = 0x00u,
+    ACCEL_FS_4G     = 0x08u,
+    ACCEL_FS_8G     = 0x10u,
+    ACCEL_FS_16G    = 0x18u 
+};
 
-typedef enum
+enum
 {
-    GYRO_FS_250_DPS,
-    GYRO_FS_500_DPS,
-    GYRO_FS_1000_DPS,
-    GYRO_FS_2000_DPS
-}GyroRange_t;
+    GYRO_FS_250_DPS     = 0x00u,
+    GYRO_FS_500_DPS     = 0x08u,
+    GYRO_FS_1000_DPS    = 0x10u,
+    GYRO_FS_2000_DPS    = 0x18u
+};
 
 typedef enum
 {
@@ -111,6 +114,7 @@ typedef enum
     DLPF_CFG_5Hz,
 }DLPFcfg_t;
 
+uint8_t IS_MPU9250_ON(uint8_t addr);
 uint8_t IMU_Init(imu_t* Data);
 void IMU_Read(imu_t* data); 
 

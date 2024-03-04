@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <mpu9250.h>
+#include <mpu9250-spi.h>
 #include <string.h>
 #include <stdio.h>
 /* USER CODE END Includes */
