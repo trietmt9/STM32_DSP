@@ -9,7 +9,7 @@
 /**
  * @brief Activates the SPI bus by setting the Chip Select pin to low.
  */
-static inline void SPI_Activate(void) 
+inline void SPI_Activate(void) 
 {
     HAL_GPIO_WritePin(IMU_CS_GPIO_Port, IMU_CS_Pin, RESET);
 }
@@ -17,7 +17,7 @@ static inline void SPI_Activate(void)
 /**
  * @brief Deactivates the SPI bus by setting the Chip Select pin to high.
  */
-static inline void SPI_Deactivate(void)
+inline void SPI_Deactivate(void)
 {
     HAL_GPIO_WritePin(IMU_CS_GPIO_Port, IMU_CS_Pin, SET);
 }
