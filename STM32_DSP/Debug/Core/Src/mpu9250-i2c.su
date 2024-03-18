@@ -1,5 +1,3 @@
-../Core/Src/mpu9250-i2c.c:9:9:CHECK_MPU9250	40	static
-../Core/Src/mpu9250-i2c.c:23:6:ACCEL_SCALE	40	static
-../Core/Src/mpu9250-i2c.c:50:6:GYRO_SCALE	40	static
-../Core/Src/mpu9250-i2c.c:76:6:IMU_INIT	48	static
-../Core/Src/mpu9250-i2c.c:92:9:IMU_read	48	static
+../Core/Src/mpu9250-i2c.c:10:9:CHECK_MPU9250	40	static
+../Core/Src/mpu9250-i2c.c:77:6:IMU_INIT	40	static
+../Core/Src/mpu9250-i2c.c:97:9:IMU_read	40	static

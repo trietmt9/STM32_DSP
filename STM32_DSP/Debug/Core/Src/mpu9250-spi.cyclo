@@ -1,5 +1,5 @@
-../Core/Src/mpu9250-spi.c:12:20:SPI_Activate	1
-../Core/Src/mpu9250-spi.c:20:20:SPI_Deactivate	1
+../Core/Src/mpu9250-spi.c:12:6:SPI_Activate	1
+../Core/Src/mpu9250-spi.c:20:6:SPI_Deactivate	1
 ../Core/Src/mpu9250-spi.c:32:6:ReadRegister	1
 ../Core/Src/mpu9250-spi.c:46:6:WriteRegister	1
 ../Core/Src/mpu9250-spi.c:60:6:Gyro_AFS_Select	5

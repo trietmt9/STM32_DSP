@@ -21,7 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <mpu9250-spi.h>
+//#include <mpu9250-spi.h>
+#include <mpu9250-i2c.h>
 #include <string.h>
 #include <stdio.h>
 /* USER CODE END Includes */
@@ -101,21 +102,22 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  IMU_Init(&MPU9250_t);
+  IMU_INIT(&MPU9250_t);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    IMU_Read(&MPU9250_t);
+
+	IMU_read(&MPU9250_t);
     g_Ax = MPU9250_t.RawData_t.Ax_RAW;
     g_Ay = MPU9250_t.RawData_t.Ay_RAW;
     g_Az = MPU9250_t.RawData_t.Az_RAW;
 
-    // sprintf(Ax, "%.2f\n", g_Ax);
-    // HAL_UART_Transmit(&huart2,(uint8_t*) &Ax, strlen(Ax), 100);
-    // HAL_Delay(500);
+     sprintf(Ax, "%.2f\n", g_Ax);
+     HAL_UART_Transmit(&huart2,(uint8_t*) &Ax, strlen(Ax), 100);
+     HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
