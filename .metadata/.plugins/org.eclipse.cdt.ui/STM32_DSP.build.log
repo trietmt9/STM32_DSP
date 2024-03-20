@@ -1,10 +1,10 @@
-14:45:26 **** Incremental Build of configuration Debug for project STM32_DSP ****
+19:10:36 **** Incremental Build of configuration Debug for project STM32_DSP ****
 make -j16 all 
 arm-none-eabi-size  STM32_DSP.elf 
    text	   data	    bss	    dec	    hex	filename
-  32096	    476	   2244	  34816	   8800	STM32_DSP.elf
+  26864	    476	   2148	  29488	   7330	STM32_DSP.elf
 Finished building: default.size.stdout
  
 
-14:45:26 Build Finished. 0 errors, 0 warnings. (took 188ms)
+19:10:36 Build Finished. 0 errors, 0 warnings. (took 227ms)
 

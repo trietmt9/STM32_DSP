@@ -22,7 +22,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 //#include <mpu9250-spi.h>
-#include <mpu9250-i2c.h>
+// #include <mpu9250-i2c.h>
+#include <mpu9250-spi.h>
 #include <string.h>
 #include <stdio.h>
 /* USER CODE END Includes */
@@ -52,7 +53,9 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 imu_t MPU9250_t;
 float g_Ax, g_Ay, g_Az;
+uint8_t check;
 char Ax[20];
+//uint8_t _addr = MPU9250_ADDRESS << 1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -86,7 +89,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+uint8_t who_am_i;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -102,25 +105,29 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  IMU_INIT(&MPU9250_t);
+  // IMU_INIT(&MPU9250_t);
+
+
+
+  // set power management register to normal mode
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // IMU_read(&MPU9250_t);
+    // g_Ax = MPU9250_t.Data_t.Ax;
+    // g_Ay = MPU9250_t.Data_t.Ay;
+    // g_Az = MPU9250_t.Data_t.Az;
 
-	IMU_read(&MPU9250_t);
-    g_Ax = MPU9250_t.RawData_t.Ax_RAW;
-    g_Ay = MPU9250_t.RawData_t.Ay_RAW;
-    g_Az = MPU9250_t.RawData_t.Az_RAW;
-
-     sprintf(Ax, "%.2f\n", g_Ax);
-     HAL_UART_Transmit(&huart2,(uint8_t*) &Ax, strlen(Ax), 100);
-     HAL_Delay(500);
+    // sprintf(Ax, "%.2f\n", g_Ax);
+    // HAL_UART_Transmit(&huart2,(uint8_t*) &Ax, strlen(Ax), 100);
+    // HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  who_am_i = IS_MPU9250_ON();
     
   }
   /* USER CODE END 3 */
@@ -220,10 +227,10 @@ static void MX_SPI1_Init(void)
   hspi1.Init.Mode = SPI_MODE_MASTER;
   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
-  hspi1.Init.CLKPhase = SPI_PHASE_2EDGE;
+  hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_128;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;

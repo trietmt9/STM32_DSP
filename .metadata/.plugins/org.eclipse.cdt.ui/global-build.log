@@ -1,28 +1,62 @@
-14:45:22 **** Incremental Build of configuration Debug for project STM32_DSP ****
+18:27:20 **** Incremental Build of configuration Debug for project STM32_DSP ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/mpu9250-i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250-i2c.d" -MT"Core/Src/mpu9250-i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250-i2c.o"
-../Core/Src/mpu9250-i2c.c: In function 'IMU_INIT':
-../Core/Src/mpu9250-i2c.c:82:8: warning: implicit declaration of function 'IS_MPU9250_ON'; did you mean 'INC_MPU9250_H_'? [-Wimplicit-function-declaration]
-   82 |     if(IS_MPU9250_ON(MPU9250_ADDRESS) == HAL_OK)
-      |        ^~~~~~~~~~~~~
-      |        INC_MPU9250_H_
-../Core/Src/mpu9250-i2c.c: In function 'IMU_read':
-../Core/Src/mpu9250-i2c.c:101:51: warning: passing argument 5 of 'HAL_I2C_Mem_Read' from incompatible pointer type [-Wincompatible-pointer-types]
-  101 |     HAL_I2C_Mem_Read(&hi2c1, _addr, ACCEL_OUT, 1, &Acceldata, 6, I2C_TIMEOUT);
-      |                                                   ^~~~~~~~~~
-      |                                                   |
-      |                                                   uint8_t (*)[6] {aka unsigned char (*)[6]}
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:363,
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:92:9: warning: unused variable 'who_am_i' [-Wunused-variable]
+   92 | uint8_t who_am_i;
+      |         ^~~~~~~~
+arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32_DSP.elf
+ 
+arm-none-eabi-size  STM32_DSP.elf 
+arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
+   text	   data	    bss	    dec	    hex	filename
+  25424	    476	   2212	  28112	   6dd0	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32_DSP.list
+ 
+18:27:26 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-size  STM32_DSP.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25424	    476	   2212	  28112	   6dd0	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+18:29:52 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mpu9250-spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250-spi.d" -MT"Core/Src/mpu9250-spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250-spi.o"
+../Core/Src/mpu9250-spi.c: In function 'ReadRegister':
+../Core/Src/mpu9250-spi.c:37:29: warning: passing argument 2 of 'HAL_SPI_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
+   37 |     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
+      |                             ^~~~~~~~
+      |                             |
+      |                             uint8_t ** {aka unsigned char **}
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
                  from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
                  from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/mpu9250-i2c.h:20,
-                 from ../Core/Src/mpu9250-i2c.c:8:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:571:133: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[6]' {aka 'unsigned char (*)[6]'}
-  571 | HAL_StatusTypeDef HAL_I2C_Mem_Read(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint16_t MemAddSize, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                                                                                            ~~~~~~~~~^~~~~
-../Core/Src/mpu9250-i2c.c:105:1: warning: control reaches end of non-void function [-Wreturn-type]
-  105 | }
+                 from ../Core/Inc/mpu9250-spi.h:13,
+                 from ../Core/Src/mpu9250-spi.c:7:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:671:69: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+  671 | HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                            ~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:92:9: warning: unused variable 'who_am_i' [-Wunused-variable]
+   92 | uint8_t who_am_i;
+      |         ^~~~~~~~
+../Core/Src/mpu9250-spi.c: In function 'IMU_Read':
+../Core/Src/mpu9250-spi.c:168:29: warning: passing argument 2 of 'ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
+  168 |     ReadRegister(ACCEL_OUT, Accel_data, 14);
+      |                             ^~~~~~~~~~
+      |                             |
+      |                             uint16_t * {aka short unsigned int *}
+../Core/Src/mpu9250-spi.c:32:46: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+   32 | void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
+      |                                     ~~~~~~~~~^~~~~~~
+../Core/Src/mpu9250-spi.c: In function 'IMU_Init':
+../Core/Src/mpu9250-spi.c:158:1: warning: control reaches end of non-void function [-Wreturn-type]
+  158 | }
       | ^
 arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: STM32_DSP.elf
@@ -30,15 +64,155 @@ Finished building target: STM32_DSP.elf
 arm-none-eabi-size  STM32_DSP.elf 
 arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
    text	   data	    bss	    dec	    hex	filename
-  32096	    476	   2244	  34816	   8800	STM32_DSP.elf
+  25416	    476	   2212	  28104	   6dc8	STM32_DSP.elf
 Finished building: default.size.stdout
  
 Finished building: STM32_DSP.list
  
-14:45:26 **** Incremental Build of configuration Debug for project STM32_DSP ****
+18:41:26 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:92:9: warning: unused variable 'who_am_i' [-Wunused-variable]
+   92 | uint8_t who_am_i;
+      |         ^~~~~~~~
+arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32_DSP.elf
+ 
+arm-none-eabi-size  STM32_DSP.elf 
+arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
+   text	   data	    bss	    dec	    hex	filename
+  25432	    476	   2212	  28120	   6dd8	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32_DSP.list
+ 
+18:50:00 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mpu9250-spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mpu9250-spi.d" -MT"Core/Src/mpu9250-spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mpu9250-spi.o"
+../Core/Src/mpu9250-spi.c: In function 'ReadRegister':
+../Core/Src/mpu9250-spi.c:37:29: warning: passing argument 2 of 'HAL_SPI_Receive' from incompatible pointer type [-Wincompatible-pointer-types]
+   37 |     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
+      |                             ^~~~~~~~
+      |                             |
+      |                             uint8_t ** {aka unsigned char **}
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:403,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/mpu9250-spi.h:13,
+                 from ../Core/Src/mpu9250-spi.c:7:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:671:69: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+  671 | HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                            ~~~~~~~~~^~~~~
+../Core/Src/mpu9250-spi.c: In function 'IMU_Read':
+../Core/Src/mpu9250-spi.c:169:29: warning: passing argument 2 of 'ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
+  169 |     ReadRegister(ACCEL_OUT, Accel_data, 14);
+      |                             ^~~~~~~~~~
+      |                             |
+      |                             uint16_t * {aka short unsigned int *}
+../Core/Src/mpu9250-spi.c:32:46: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+   32 | void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
+      |                                     ~~~~~~~~~^~~~~~~
+../Core/Src/mpu9250-spi.c: In function 'IMU_Init':
+../Core/Src/mpu9250-spi.c:159:1: warning: control reaches end of non-void function [-Wreturn-type]
+  159 | }
+      | ^
+arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32_DSP.elf
+ 
+arm-none-eabi-size  STM32_DSP.elf 
+arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
+   text	   data	    bss	    dec	    hex	filename
+  26840	    476	   2148	  29464	   7318	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32_DSP.list
+ 
+18:51:55 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:114:14: warning: implicit declaration of function 'IS_MPU9250_ON'; did you mean 'INC_MPU9250_H_'? [-Wimplicit-function-declaration]
+  114 |   who_am_i = IS_MPU9250_ON();
+      |              ^~~~~~~~~~~~~
+      |              INC_MPU9250_H_
+../Core/Src/main.c:92:9: warning: variable 'who_am_i' set but not used [-Wunused-but-set-variable]
+   92 | uint8_t who_am_i;
+      |         ^~~~~~~~
+arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32_DSP.elf
+ 
+arm-none-eabi-size  STM32_DSP.elf 
+arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
+   text	   data	    bss	    dec	    hex	filename
+  26864	    476	   2148	  29488	   7330	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32_DSP.list
+ 
+18:57:22 **** Incremental Build of configuration Debug for project STM32_DSP ****
 make -j16 all 
 arm-none-eabi-size  STM32_DSP.elf 
    text	   data	    bss	    dec	    hex	filename
-  32096	    476	   2244	  34816	   8800	STM32_DSP.elf
+  26864	    476	   2148	  29488	   7330	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+19:00:14 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:114:14: warning: implicit declaration of function 'IS_MPU9250_ON'; did you mean 'INC_MPU9250_H_'? [-Wimplicit-function-declaration]
+  114 |   who_am_i = IS_MPU9250_ON();
+      |              ^~~~~~~~~~~~~
+      |              INC_MPU9250_H_
+../Core/Src/main.c:92:9: warning: variable 'who_am_i' set but not used [-Wunused-but-set-variable]
+   92 | uint8_t who_am_i;
+      |         ^~~~~~~~
+arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32_DSP.elf
+ 
+arm-none-eabi-size  STM32_DSP.elf 
+arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
+   text	   data	    bss	    dec	    hex	filename
+  26864	    476	   2148	  29488	   7330	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32_DSP.list
+ 
+19:01:01 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:130:22: warning: implicit declaration of function 'IS_MPU9250_ON'; did you mean 'INC_MPU9250_H_'? [-Wimplicit-function-declaration]
+  130 |           who_am_i = IS_MPU9250_ON();
+      |                      ^~~~~~~~~~~~~
+      |                      INC_MPU9250_H_
+../Core/Src/main.c:92:9: warning: variable 'who_am_i' set but not used [-Wunused-but-set-variable]
+   92 | uint8_t who_am_i;
+      |         ^~~~~~~~
+arm-none-eabi-gcc -o "STM32_DSP.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\pc\Documents\STM32_DSP\STM32_DSP\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DSP.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32_DSP.elf
+ 
+arm-none-eabi-size  STM32_DSP.elf 
+arm-none-eabi-objdump -h -S STM32_DSP.elf  > "STM32_DSP.list"
+   text	   data	    bss	    dec	    hex	filename
+  26864	    476	   2148	  29488	   7330	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32_DSP.list
+ 
+19:01:51 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-size  STM32_DSP.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26864	    476	   2148	  29488	   7330	STM32_DSP.elf
+Finished building: default.size.stdout
+ 
+19:10:36 **** Incremental Build of configuration Debug for project STM32_DSP ****
+make -j16 all 
+arm-none-eabi-size  STM32_DSP.elf 
+   text	   data	    bss	    dec	    hex	filename
+  26864	    476	   2148	  29488	   7330	STM32_DSP.elf
 Finished building: default.size.stdout
  

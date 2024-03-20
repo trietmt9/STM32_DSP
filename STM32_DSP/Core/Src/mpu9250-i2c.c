@@ -79,7 +79,7 @@ void IMU_INIT(imu_t* pIMU)
     uint8_t _addr = MPU9250_ADDRESS << 1;
     uint8_t data;
     
-    if(IS_MPU9250_ON(MPU9250_ADDRESS) == HAL_OK)
+    if(CHECK_MPU9250(MPU9250_ADDRESS) == HAL_OK)
     {
         data = 0x00u;
         HAL_I2C_Mem_Write(&hi2c1, _addr, PWR_MGMT_1, 1, &data , 1,I2C_TIMEOUT);
@@ -102,4 +102,18 @@ uint8_t IMU_read(imu_t *pIMU)
     pIMU->RawData_t.Ax_RAW = (int16_t)((Acceldata[0] << 8) | Acceldata[1]);
     pIMU->RawData_t.Ay_RAW = (int16_t)((Acceldata[2] << 8) | Acceldata[3]);
     pIMU->RawData_t.Az_RAW = (int16_t)((Acceldata[4] << 8) | Acceldata[5]);
+
+    uint8_t Gyrodata[6];
+    HAL_I2C_Mem_Read(&hi2c1, _addr, GYRO_OUT, 1, &Gyrodata, 6, I2C_TIMEOUT);
+    pIMU->RawData_t.Gx_RAW = (int16_t)((Gyrodata[0] << 8) | Gyrodata[1]);
+    pIMU->RawData_t.Gy_RAW = (int16_t)((Gyrodata[2] << 8) | Gyrodata[3]);
+    pIMU->RawData_t.Gz_RAW = (int16_t)((Gyrodata[4] << 8) | Gyrodata[5]);
+
+    pIMU->Data_t.Ax = (float)pIMU->RawData_t.Ax_RAW/16384.0;
+    pIMU->Data_t.Ay = (float)pIMU->RawData_t.Ay_RAW/16384.0;
+    pIMU->Data_t.Az = (float)pIMU->RawData_t.Az_RAW/16384.0;
+
+    pIMU->Data_t.Gx = (float)pIMU->RawData_t.Gx_RAW/131.0;
+    pIMU->Data_t.Gy = (float)pIMU->RawData_t.Gy_RAW/131.0;
+    pIMU->Data_t.Gz = (float)pIMU->RawData_t.Gz_RAW/131.0;
 }

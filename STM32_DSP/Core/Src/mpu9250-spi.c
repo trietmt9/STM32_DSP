@@ -36,6 +36,7 @@ void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
     HAL_SPI_Transmit(&hspi1, &data, 1, SPI_TIMEOUT);
     HAL_SPI_Receive(&hspi1, &pBuffer, size, SPI_TIMEOUT);
     SPI_Deactivate();
+    
 }
 /**
  * @brief Writes a single register to the MPU-9250.
@@ -46,8 +47,8 @@ void ReadRegister(uint8_t Register, uint8_t* pBuffer, uint8_t size)
 void WriteRegister(uint8_t* Register, uint8_t* pBuffer)
 {
     SPI_Activate();
-    HAL_SPI_Transmit(&hspi1, &Register, 1, SPI_TIMEOUT);
-    HAL_SPI_Transmit(&hspi1, &pBuffer, 1, SPI_TIMEOUT);
+    HAL_SPI_Transmit(&hspi1,(uint8_t*) Register, 1, SPI_TIMEOUT);
+    HAL_SPI_Transmit(&hspi1,(uint8_t*) pBuffer, 1, SPI_TIMEOUT);
     SPI_Deactivate();
 }
 

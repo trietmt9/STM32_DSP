@@ -1,9 +1,9 @@
 ../Core/Src/mpu9250-spi.c:12:6:SPI_Activate	8	static
 ../Core/Src/mpu9250-spi.c:20:6:SPI_Deactivate	8	static
 ../Core/Src/mpu9250-spi.c:32:6:ReadRegister	24	static
-../Core/Src/mpu9250-spi.c:46:6:WriteRegister	16	static
-../Core/Src/mpu9250-spi.c:60:6:Gyro_AFS_Select	16	static
-../Core/Src/mpu9250-spi.c:88:6:Accel_AFS_Select	16	static
-../Core/Src/mpu9250-spi.c:114:9:IS_MPU9250_ON	16	static
-../Core/Src/mpu9250-spi.c:125:9:IMU_Init	24	static
-../Core/Src/mpu9250-spi.c:165:6:IMU_Read	48	static
+../Core/Src/mpu9250-spi.c:47:6:WriteRegister	16	static
+../Core/Src/mpu9250-spi.c:61:6:Gyro_AFS_Select	16	static
+../Core/Src/mpu9250-spi.c:89:6:Accel_AFS_Select	16	static
+../Core/Src/mpu9250-spi.c:115:9:IS_MPU9250_ON	16	static
+../Core/Src/mpu9250-spi.c:126:9:IMU_Init	24	static
+../Core/Src/mpu9250-spi.c:166:6:IMU_Read	48	static

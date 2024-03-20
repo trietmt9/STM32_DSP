@@ -46,7 +46,7 @@ extern I2C_HandleTypeDef hi2c1;
 
 /* MACROS */
 
-#define I2C_TIMEOUT                                     100          
+#define I2C_TIMEOUT                                     1000
 
 /** STRUCT FOR READING IMU DATA **/
 typedef struct 
