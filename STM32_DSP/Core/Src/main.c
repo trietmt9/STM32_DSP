@@ -116,18 +116,14 @@ uint8_t who_am_i;
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // IMU_read(&MPU9250_t);
-    // g_Ax = MPU9250_t.Data_t.Ax;
-    // g_Ay = MPU9250_t.Data_t.Ay;
-    // g_Az = MPU9250_t.Data_t.Az;
-
-    // sprintf(Ax, "%.2f\n", g_Ax);
-    // HAL_UART_Transmit(&huart2,(uint8_t*) &Ax, strlen(Ax), 100);
-    // HAL_Delay(500);
+    
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  who_am_i = IS_MPU9250_ON();
+	HAL_SPI_Receive(&hspi1,(uint8_t *)&Ax, sizeof(Ax),SPI_TIMEOUT);
+    HAL_Delay(500);
+    HAL_UART_Transmit(&hspi1,(uint8_t *)&Ax, sizeof(Ax),100);
+    HAL_Delay(500);
     
   }
   /* USER CODE END 3 */
